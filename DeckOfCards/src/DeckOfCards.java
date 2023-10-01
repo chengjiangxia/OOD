@@ -1,4 +1,4 @@
-import java.lang.reflect.Array;
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class DeckOfCards {
@@ -41,7 +41,7 @@ public class DeckOfCards {
 
         }
         public T dealCard() {
-            
+
         }
     }
     public abstract class Card {
@@ -59,5 +59,20 @@ public class DeckOfCards {
         public boolean isAvailable() {return available;}
         public void markUnavailable() {available = false;}
         public void markAvailable() {available = true;}
+    }
+
+    public class Hand <T extends Card> {
+        protected ArrayList<T> cards = new ArrayList<T>();
+
+        public int score() {
+            int score = 0;
+            for (T card : cards) {
+                score += card.value();
+            }
+            return score;
+        }
+        public void addCard(T card) {
+            cards.add(card);
+        }
     }
 }
